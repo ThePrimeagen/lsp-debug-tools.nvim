@@ -13,7 +13,8 @@ debug_tools.start({
         rows = 10,
     },
     filter = function(x)
-        print(vim.inspect(lsp_line(x)))
-        return true
+        local line = lsp_line(x)
+        print(line.type, line.server_name, line.type == "ServerEvent" and line.server_name == "testing-lsp")
+        return line.type == "ServerEvent" and line.server_name == "\"testing-lsp\""
     end
 })

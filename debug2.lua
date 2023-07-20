@@ -1,0 +1,13 @@
+vim.lsp.start({
+    name = 'testing-ls',
+    cmd = {'testing-ls'},
+    root_dir = vim.fs.dirname(vim.fs.find({'Cargo.toml'}, { upward = true })[1]),
+})
+
+vim.api.nvim_create_autocmd('LspAttach', {
+    callback = function(args)
+        -- print(vim.inspect(args));
+    end,
+})
+
+

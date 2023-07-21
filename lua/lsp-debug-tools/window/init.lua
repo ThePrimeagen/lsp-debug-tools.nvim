@@ -4,9 +4,9 @@ local bufnr = -1
 local win_id = -1
 
 local function create_window()
-    local bufnr = vim.api.nvim_create_buf(false, true)
+    local new_bufnr = vim.api.nvim_create_buf(false, true)
 
-    if bufnr == 0 then
+    if new_bufnr == 0 then
         error("Failed to create buffer")
     end
 
@@ -16,9 +16,9 @@ local function create_window()
     async.util.scheduler()
 
     win_id = vim.api.nvim_get_current_win()
-    vim.api.nvim_win_set_buf(win_id, bufnr)
+    vim.api.nvim_win_set_buf(win_id, new_bufnr)
 
-    return win_id, bufnr
+    return win_id, new_bufnr
 end
 
 M.has_valid_window = function()

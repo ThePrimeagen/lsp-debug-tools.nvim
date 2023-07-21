@@ -1,5 +1,5 @@
 local async = require("plenary.async")
-local Job = require'plenary.job'
+local Job = require 'plenary.job'
 local window = require("lsp-debug-tools.window")
 local Preview = require("lsp-debug-tools.preview")
 
@@ -13,7 +13,7 @@ local default_config = {
     preview = Preview:new(),
     filter = function(x) return true end,
 }
-local config = { }
+local config = {}
 
 M.setup = function(opts)
     opts = opts or {}
@@ -39,7 +39,6 @@ M.start = function(opts)
 
     async.run(function()
         local bufnr = window.show_window(run_config.window)
-        local history = {}
 
         running = true
         Job:new({

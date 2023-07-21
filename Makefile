@@ -1,4 +1,4 @@
-.PHONY: lint
+.PHONY: lint stylua
 
 lint:
 	luacheck lua/lsp-debug-tools

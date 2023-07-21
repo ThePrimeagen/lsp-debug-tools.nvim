@@ -32,13 +32,8 @@ M.show = function()
 end
 
 M.start = function(opts)
-    local run_config = vim.tbl_deep_extend(
-        "force",
-        {},
-        default_config,
-        config,
-        opts
-    )
+    local run_config =
+        vim.tbl_deep_extend("force", {}, default_config, config, opts)
 
     if running then
         window.show_window(run_config.window)
@@ -49,34 +44,32 @@ M.start = function(opts)
         local bufnr = window.show_window(run_config.window)
 
         running = true
-        Job
-            :new({
-                command = "tail",
-                args = {
-                    "-F",
-                    vim.fn.expand("~") .. "/.local/state/nvim/lsp.log",
-                },
-                on_exit = function()
-                    running = false
-                end,
-                on_stderr = function()
-                    running = false
-                end,
-                on_stdout = function(_, b)
-                    vim.schedule(function()
-                        if not run_config.filter(b) then
-                            return
-                        end
+        Job:new({
+            command = "tail",
+            args = {
+                "-F",
+                vim.fn.expand("~") .. "/.local/state/nvim/lsp.log",
+            },
+            on_exit = function()
+                running = false
+            end,
+            on_stderr = function()
+                running = false
+            end,
+            on_stdout = function(_, b)
+                vim.schedule(function()
+                    if not run_config.filter(b) then
+                        return
+                    end
 
-                        local lines = run_config.preview:render(b)
-                        if not window.has_valid_window() then
-                            return
-                        end
-                        vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, lines)
-                    end)
-                end,
-            })
-            :start()
+                    local lines = run_config.preview:render(b)
+                    if not window.has_valid_window() then
+                        return
+                    end
+                    vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, lines)
+                end)
+            end,
+        }):start()
     end)
 end
 

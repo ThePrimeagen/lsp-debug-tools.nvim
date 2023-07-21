@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+version=$(stylua --version)
+
+if [ ! "$version" = "stylua 0.18.1" ]; then
+    >&2 echo "expected version of stylua to be \"stylua 0.18.1\" but found \"$version\""
+    exit 1
+fi

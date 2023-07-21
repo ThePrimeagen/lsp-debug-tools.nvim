@@ -11,9 +11,8 @@ jobs:
       - uses: JohnnyMorganz/stylua-action@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          version: latest
-          # CLI arguments
-          args: --color always --check .
+          version: 0.18.1
+          args: --check --config-path ./.stylua.toml .
 
   luacheck:
     name: Luacheck

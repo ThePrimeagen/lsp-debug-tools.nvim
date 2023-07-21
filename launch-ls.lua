@@ -1,6 +1,6 @@
 vim.lsp.start({
-    name = 'testing-ls',
-    cmd = {'testing-ls'},
+    name = 'waxwing-lsp',
+    cmd = {'waxwing-lsp'},
     root_dir = vim.fs.dirname(vim.fs.find({'Cargo.toml'}, { upward = true })[1]),
 })
 

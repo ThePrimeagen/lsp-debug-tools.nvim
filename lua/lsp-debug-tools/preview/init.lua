@@ -16,7 +16,9 @@ Preview.__index = Preview
 
 function Preview:new()
     return setmetatable({
-        transform = function(x) return x end,
+        transform = function(x)
+            return x
+        end,
         history = {},
         max_count = 10,
     }, self)
@@ -42,5 +44,3 @@ function Preview:render(line)
 end
 
 return Preview
-
-

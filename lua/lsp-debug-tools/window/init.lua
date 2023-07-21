@@ -22,8 +22,8 @@ local function create_window()
 end
 
 M.has_valid_window = function()
-    return vim.api.nvim_win_is_valid(win_id) and
-        vim.api.nvim_buf_is_valid(bufnr)
+    return vim.api.nvim_win_is_valid(win_id)
+        and vim.api.nvim_buf_is_valid(bufnr)
 end
 
 local function close()
@@ -50,8 +50,10 @@ M.show_window = function(opts)
         win_id, bufnr = create_window(opts)
     end
 
-    if not vim.api.nvim_win_is_valid(win_id) or
-        not vim.api.nvim_buf_is_valid(bufnr) then
+    if
+        not vim.api.nvim_win_is_valid(win_id)
+        or not vim.api.nvim_buf_is_valid(bufnr)
+    then
         close()
         win_id, bufnr = create_window(opts)
     end
@@ -70,5 +72,3 @@ M.jump_to_window = function()
 end
 
 return M
-
-

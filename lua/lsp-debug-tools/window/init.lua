@@ -44,6 +44,8 @@ M.show_window = function(opts)
         width_ratio = 1 / 3,
     }, opts or {})
 
+    local current_window_id = vim.api.nvim_get_current_win()
+
     if win_id == -1 or bufnr == -1 then
         win_id, bufnr = create_window(opts)
     end
@@ -53,6 +55,8 @@ M.show_window = function(opts)
         close()
         win_id, bufnr = create_window(opts)
     end
+
+    vim.api.nvim_set_current_win(current_window_id)
 
     return bufnr
 end

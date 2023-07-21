@@ -1,6 +1,6 @@
 local M = {}
 
-function M.parse(line)
+function M.parse_log_line(line)
     local items = vim.split(line, "\t")
 
     if #items < 2 then

@@ -1,0 +1,2 @@
+(test
+ (name lsp_debug_tools))

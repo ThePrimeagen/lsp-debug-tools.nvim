@@ -39,8 +39,8 @@ let rec print_out_items list =
     )
 
 let filter_out_escaped line =
-  Str.global_replace (Str.regexp "\\\\\\\\") "\\\\" line |>
-  Str.global_replace (Str.regexp "\\\\n") "\n"
+  Str.global_replace (Str.regexp "\\\\n") "\n" line |>
+  Str.global_replace (Str.regexp "\\\\\\\\") "\\\\"
 
 let pretty_list_print list =
   let level =

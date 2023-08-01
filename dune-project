@@ -1,4 +1,4 @@
-(lang dune 3.9)
+(lang dune 3.8)
 
 (name lsp_debug_tools)
 

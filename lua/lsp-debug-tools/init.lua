@@ -48,7 +48,8 @@ vim.api.nvim_create_autocmd("BufEnter", {
     callback = attach_lsp,
 });
 
-function M.restart()
+function M.restart(updated_config)
+    config = vim.tbl_deep_extend("force", {}, config, updated_config or {})
     M.stop()
     M.start(config)
 end
@@ -92,5 +93,3 @@ function M.start(opts)
 end
 
 return M
-
-

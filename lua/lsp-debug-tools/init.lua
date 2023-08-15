@@ -63,6 +63,15 @@ function M.stop()
     id = nil
 end
 
+function M.htmx_lsp_config()
+    return {
+        expected = {},
+        name = "htmx-lsp",
+        cmd = { "htmx-lsp", "--level", "DEBUG" },
+        root_dir = vim.loop.cwd()
+    }
+end
+
 --- The default uses jsperf-lsp and its debug config and looks for package.json
 --- @param opts {expected: string[], name: string, cmd: string[], root_dir: string}
 function M.start(opts)

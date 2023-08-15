@@ -1,6 +1,6 @@
 (executable
- (public_name lsp_debug_tools)
- (name main)
+ (public_name lsp_debug)
+ (name lsp_debug)
  (libraries lsp_debug_tools core core_unix.command_unix)
  (preprocess
   (pps ppx_jane)))
